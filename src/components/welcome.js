@@ -1,4 +1,5 @@
 import React from 'react';
+import Search from './search';
 // import Registration from './registration';
 // import Login from './login';
 // import Navbar from './navbar';
@@ -8,7 +9,7 @@ import { HashRouter, Route } from 'react-router-dom';
 function Welcome() {
     return (
         <HashRouter>
-            <h1>WELCOME PAGE IS RUNNING</h1>
+            <Route exact path="/search" component={Search}/>
         </HashRouter>
     );
 }
