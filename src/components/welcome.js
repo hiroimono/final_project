@@ -1,15 +1,19 @@
 import React from 'react';
 import Search from './search';
-// import Registration from './registration';
-// import Login from './login';
-// import Navbar from './navbar';
-// import Footer from './footer';
+import Registration from './registration';
+import Login from './login';
+import Navbar from './navbar';
+import Footer from './footer';
 import { HashRouter, Route } from 'react-router-dom';
 
 function Welcome() {
     return (
         <HashRouter>
+            <Navbar />
+            <Route exact path="/" component={Registration}/>
+            <Route exact path="/login" component={Login}/>
             <Route exact path="/search" component={Search}/>
+            <Footer />
         </HashRouter>
     );
 }

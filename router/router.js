@@ -31,66 +31,66 @@ const uploader = multer({
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    (!req.session.userId) ? res.redirect('/welcome') : null ;
+    (!req.session.userId) ? res.redirect('/welcome') : res.redirect('/app') ;
 });
 
 
-// router.post('/register', (req, res) => {
-//     console.log(req.body);
-//     var { name, surname, email, password } = req.body;
-//     hash(password)
-//         .then( hash => {
-//             console.log("hashed password is: ", hash);
-//             db.registerUser(
-//                 name,
-//                 surname,
-//                 email,
-//                 hash
-//             )
-//                 .then(({rows}) => {
-//                     console.log("Assigned information for new user: ", rows);
-//                     req.session.userId = rows[0].id;
-//                     console.log('/register, router side, req.session.userId: ', req.session.userId);
-//                     res.json({success: true});
-//                 })
-//                 .catch(err => {
-//                     console.log('/register, router side, POST request error: ', err);
-//                     res.json({success: false});
-//                 });
-//         })
-//         .catch( err => {
-//             console.log('/register, router side, hash error: ', err);
-//             res.json({success: false});
-//         });
-//
-// });
-//
-// router.post('/login', (req, res) => {
-//     let { email, password } = req.body;
-//     db.getPassword( email )
-//         .then(result => {
-//             compare(password, result[0].password)
-//                 .then(match => {
-//                     if(match){
-//                         console.log('user logged in!!!');
-//                         req.session.userId = result[0].id;
-//                         console.log('req.session userId: ', req.session.userId);
-//                         req.session.LOGIN= true;
-//                         res.json({ success: true });
-//                     } else {
-//                         res.json({success: false });
-//                     }
-//                 })
-//                 .catch( err => {
-//                     console.log('Router side, Login page error: ', err);
-//                     res.json({success: false});
-//                 });
-//         })
-//         .catch( err => {
-//             console.log('Router side, Login page error: ', err);
-//             res.json({success: false});
-//         });
-// });
+router.post('/register', (req, res) => {
+    console.log(req.body);
+    var { name, surname, email, password } = req.body;
+    hash(password)
+        .then( hash => {
+            console.log("hashed password is: ", hash);
+            db.registerUser(
+                name,
+                surname,
+                email,
+                hash
+            )
+                .then(({rows}) => {
+                    console.log("Assigned information for new user: ", rows);
+                    req.session.userId = rows[0].id;
+                    console.log('/register, router side, req.session.userId: ', req.session.userId);
+                    res.json({success: true});
+                })
+                .catch(err => {
+                    console.log('/register, router side, POST request error: ', err);
+                    res.json({success: false});
+                });
+        })
+        .catch( err => {
+            console.log('/register, router side, hash error: ', err);
+            res.json({success: false});
+        });
+
+});
+
+router.post('/login', (req, res) => {
+    let { email, password } = req.body;
+    db.getPassword( email )
+        .then(result => {
+            compare(password, result[0].password)
+                .then(match => {
+                    if(match){
+                        console.log('user logged in!!!');
+                        req.session.userId = result[0].id;
+                        console.log('req.session userId: ', req.session.userId);
+                        req.session.LOGIN= true;
+                        res.json({ success: true });
+                    } else {
+                        res.json({success: false });
+                    }
+                })
+                .catch( err => {
+                    console.log('Router side, Login page error: ', err);
+                    res.json({success: false});
+                });
+        })
+        .catch( err => {
+            console.log('Router side, Login page error: ', err);
+            res.json({success: false});
+        });
+});
 //
 // router.get('/logout', function(req, res) {
 //     req.session.userId = null;

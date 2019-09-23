@@ -1,0 +1,18 @@
+body {
+  background-color: white;
+  font-family: 'Slabo 27px', 'Ubuntu', 'Roboto', sans-serif;
+  background-image: url("../assets/background.jpg");
+  background-repeat: repeat;
+}
+
+.form-control {
+  padding: .1rem 1rem;
+}
+
+.btn {
+  font-size: 1.5rem;
+}
+
+.tm-navbar-bg {
+  background-color: #000;
+}

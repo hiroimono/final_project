@@ -2,7 +2,7 @@ import React from 'react';
 import axios from '../axios';
 import { BrowserRouter, Route } from 'react-router-dom';
 // import { NavbarAfterLogin } from './NavbarAfterLogin';
-// import Footer from './footer';
+import Footer from './footer';
 // import { ProfileImgUploader } from './profileImgUploader';
 // import Profile from './profile';
 // import OtherProfile from './otherProfile';
@@ -69,6 +69,7 @@ export default class App extends React.Component {
         return (
             <BrowserRouter>
                 <h1>APP PAGE IS RUNNING</h1>
+                <Footer />
             </BrowserRouter>
         );
     }

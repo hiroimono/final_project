@@ -2,7 +2,7 @@ const express 		  = require('express');
 const cookieSession = require('cookie-session');
 const bodyParser    = require('body-parser');
 const compression 	= require('compression');
-const db            = require('./utils/db');
+// const db            = require('./utils/db');
 
 const app 			    = express();
 const PORT          = process.env.PORT || 8080;
