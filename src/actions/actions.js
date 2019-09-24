@@ -1,5 +1,12 @@
 import axios from '../axios';
 
+export async function searchWithSearchTerm (searchTerm) {
+    return {
+        type: 'SEACH_WITH_SEARCHTERM',
+        searchTerm
+    };
+}
+
 // export async function getFriendAndWannabes () {
 //     const { data } = await axios.get('/getfriendandwannabes.json');
 //     return {

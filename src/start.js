@@ -28,7 +28,13 @@ var elem;
 
 if (location.pathname === '/welcome'){
     //if user is on it means user not LOGGED IN
-    elem = <Welcome />;
+
+    elem = (
+        <Provider store = { store } >
+            <Welcome />
+        </Provider>
+    );
+
 } else {
     //this means user logged in
     init(store);

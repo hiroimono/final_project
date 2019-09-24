@@ -16,3 +16,7 @@ body {
 .tm-navbar-bg {
   background-color: #000;
 }
+
+.is-rounded {
+  width: 100%;
+}

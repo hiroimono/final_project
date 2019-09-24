@@ -4,6 +4,7 @@ import Registration from './registration';
 import Login from './login';
 import Navbar from './navbar';
 import Footer from './footer';
+import Favorites from './favorites';
 import { HashRouter, Route } from 'react-router-dom';
 
 function Welcome() {
@@ -13,6 +14,7 @@ function Welcome() {
             <Route exact path="/" component={Registration}/>
             <Route exact path="/login" component={Login}/>
             <Route exact path="/search" component={Search}/>
+            <Route exact path="/favorites" component={Favorites}/>
             <Footer />
         </HashRouter>
     );

@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import axios from '../axios';
 import { languages } from '../languages.json';
 import key from '../../utils/secret';
 
 function Search () {
 
-    const [searchterm, setSearchterm] = useState('');
-    const [searchType, setSearchType] = useState('podcast');
-    const [searchOnlyIn, setSearchOnlyIn] = useState(['title', 'description', 'author', 'audio']);
+    const searchterm = useSelector ( state => {
+        console.log('state.search.searchTerm: ', state.search.searchTerm);
+        return state.search.searchTerm;
+    });
+
+    const searchType = ['podcast'];
+    const searchOnlyIn = ['title', 'description', 'author', 'audio'];
     const [searchLanguage, setSearchLanguage] = useState('English');
     const [podcasts, setPodcasts] = useState([]);
 
@@ -46,6 +51,7 @@ function Search () {
                 tracks.push(podcast);
             });
             setPodcasts(tracks);
+            console.log('Podcasts: ', podcasts);
             // if (searchResults.data.next_offset){
             //     console.log('searchResults.data.next_offset: ', searchResults.data.next_offset);
             //     parameters.offset = searchResults.data.next_offset;
@@ -55,28 +61,17 @@ function Search () {
         search();
     };
 
-    // const fn = () => {
-    //     console.log('useEffect is working!!!');
-    // };
+    const fn = () => {
+        console.log('useEffect is working!!!');
+    };
 
-    useEffect( loadFunc , [searchterm, searchType, searchLanguage]);
+    useEffect( loadFunc , [searchterm]);
+    // useEffect( fn , [searchterm]);
 
 
     return (
         <div style={{marginTop:'60px'}}>
-            <div className="container" style = {{color:'white', display:'flex', marginLeft: '10px'}}>
-                <div className="media-content">
-                    <p className="title is-2" style={{textAlign: 'center', margin: '10px'}}>Search: </p>
-                </div>
 
-
-                <div style={{textAlign:'center', alignSelf:'center'}}>
-                    <input className="input is-rounded" type="text" placeholder="Search new podcasts" style={{ maxWidth: '500px', height: '30px', borderRadius: '20px', paddingLeft:'20px', color: '#bbb'}}
-                        onChange = { e => setSearchterm(e.target.value) }
-                    />
-                </div>
-
-            </div>
             <ul className="cd-hero-slider" style={{marginTop: '10px', height: '100%'}}>
 
                 <li className="selected">
@@ -96,6 +91,9 @@ function Search () {
                                         </div>
                                     ))}
                                 </div>
+                                <div style={{textAlign:'center', marginBottom:'50px'}}>
+                                    { podcasts.length ? <button type="button" className="btn btn-light">More</button> : ''}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -107,6 +105,20 @@ function Search () {
 }
 
 export default Search;
+
+// <div className="container" style = {{color:'white', display:'flex', marginLeft: '10px'}}>
+//     <div className="media-content">
+//         <p className="title is-2" style={{textAlign: 'center', margin: '10px'}}>Search: </p>
+//     </div>
+//
+//
+//     <div style={{textAlign:'center', alignSelf:'center'}}>
+//         <input className="input is-rounded" type="text" placeholder="Search new podcasts" style={{ maxWidth: '500px', height: '30px', borderRadius: '20px', paddingLeft:'20px', color: '#777'}}
+//             onChange = { e => setSearchterm(e.target.value) }
+//         />
+//     </div>
+//
+// </div>
 
 // <div style={{textAlign:'center'}}>
 //     <span>Language: </span>

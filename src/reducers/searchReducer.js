@@ -1,13 +1,13 @@
-const chatroomReducer = ( state = {}, action ) => {
-    console.log('/////////////////// ChatroomReducer-START///////////////////');
-    // if (action.type === 'ACTION_SHOW_NEW_MESSAGES') {
-    //     // console.log('ACTION_SHOW_MESSAGES in reducer, action: ', action);
-    //     console.log('ACTION_SHOW_MESSAGES in reducer, state (before): ', state);
-    //     state = {
-    //         ...state,
-    //         newMessageData: action.newMessageData
-    //     };
-    // }
+const searchReducer = ( state = {}, action ) => {
+    console.log('/////////////////// searchReducer-START///////////////////');
+    if (action.type === 'SEACH_WITH_SEARCHTERM') {
+        // console.log('SEACH_WITH_SEARCHTERM in reducer, action: ', action);
+        console.log('SEACH_WITH_SEARCHTERM action in reducer, state (before): ', state);
+        state = {
+            ...state,
+            searchTerm: action.searchTerm
+        };
+    }
     //
     // if (action.type === 'ACTION_SHOW_LAST_10_MESSAGES') {
     //     // console.log('ACTION_SHOW_LAST_10_MESSAGES in reducer, action: ', action);
@@ -46,9 +46,9 @@ const chatroomReducer = ( state = {}, action ) => {
     //     };
     // }
 
-    console.log('In chatroomReducer, state (after): ', state);
-    console.log('/////////////////// ChatroomReducer-END///////////////////');
+    console.log('In searchReducer, state (after): ', state);
+    console.log('/////////////////// searchReducer-END///////////////////');
     return state;
 };
 
-export default chatroomReducer;
+export default searchReducer;

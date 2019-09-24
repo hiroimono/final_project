@@ -68,6 +68,9 @@ io.on('connection', socket => {
         return socket.disconnect(true);
     }
     console.log(`User-id: ${socket.request.session.userId}, CONNECTED to a socket-id: ${ socket.id }`);
+
+    socket.emit('welcome', `Hey user ${socket.request.session.userId};good to see you again!!!` );
+    socket.on('thanks', (data) => console.log(data));
     //
     // const loadLast10Messages = () =>{
     //     db.loadLast10Messages()

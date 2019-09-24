@@ -48,7 +48,7 @@ export default class Registration extends React.Component {
 
     render(){
         return (
-            <div className="container" style = {{ width: '400px', marginTop: '120px' }}>
+            <div className="container" style = {{ width: '400px', marginTop: '120px', color:'white' }}>
                 { this.state.error && <p style = {{fontSize: '20px', textAlign: 'center'}}>Something went wrong. Please try again!</p> }
                 <form>
                     <div className="form-group">

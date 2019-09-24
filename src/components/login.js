@@ -50,7 +50,7 @@ export default class Login extends React.Component {
 
     render(){
         return (
-            <div className="container" style = {{ width: '400px', marginTop: '200px'}}>
+            <div className="container" style = {{ width: '400px', marginTop: '200px', color:'white'}}>
                 { this.state.error && <p style = {{fontSize: '20px', textAlign: 'center'}}>Something went wrong. Please try again!</p> }
                 <form>
                     <div className="form-group">

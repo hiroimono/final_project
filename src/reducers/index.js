@@ -1,11 +1,12 @@
-import friendshipsReducer from './friendshipsReducer';
-import chatroomReducer from './chatroomReducer';
+import searchReducer from './searchReducer';
 
 import { combineReducers } from 'redux';
 
 const AllReducers = combineReducers({
-    friendships: friendshipsReducer,
-    chatroom: chatroomReducer
+    search: searchReducer,
 });
 
 export default AllReducers;
+
+// import chatroomReducer from './chatroomReducer';
+// chatroom: chatroomReducer
