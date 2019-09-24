@@ -30,9 +30,9 @@ const uploader = multer({
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    (!req.session.userId) ? res.redirect('/welcome') : res.redirect('/app') ;
-});
+// router.get('/', (req, res) => {
+//     (!req.session.userId) ? res.redirect('/welcome') : res.redirect('/app') ;
+// });
 
 
 router.post('/register', (req, res) => {

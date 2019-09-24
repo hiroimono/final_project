@@ -5,6 +5,7 @@ import Login from './login';
 import Navbar from './navbar';
 import Footer from './footer';
 import Favorites from './favorites';
+import Player from './audioPlayer';
 import { HashRouter, Route } from 'react-router-dom';
 
 function Welcome() {
@@ -15,6 +16,7 @@ function Welcome() {
             <Route exact path="/login" component={Login}/>
             <Route exact path="/search" component={Search}/>
             <Route exact path="/favorites" component={Favorites}/>
+            <Player />
             <Footer />
         </HashRouter>
     );

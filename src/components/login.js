@@ -35,7 +35,7 @@ export default class Login extends React.Component {
             .then((res) => {
                 if (res.data.success) {
                     console.log('/login, data of loggedin user: ', res.data);
-                    location.replace("/");
+                    location.replace("/search");
                 } else {
                     this.setState({ error: true });
                 }
@@ -70,11 +70,11 @@ export default class Login extends React.Component {
                     </div>
                     <div style = {{ textAlign: 'center' }}>
                         <button type="submit" className="btn btn-primary"
-                            onClick={ this.register }
-                        >Register</button>
+                            onClick={ this.login }
+                        >Log in</button>
                     </div>
                 </form>
-                <p style = {{textAlign: 'center'}}>Have not you registered yet? <Link to="/"> Register </Link></p>
+                <p style = {{textAlign: 'center'}}>Have not registered yet? <Link to="/"> Register </Link></p>
             </div>
         );
     }
