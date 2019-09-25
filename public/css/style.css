@@ -21,8 +21,8 @@ body {
   width: 100%;
 }
 
-.audio-player {
-  position: absolute;
+/* .audio-player {
+  position: sticky;
   bottom: 40px;
   left: 50%;
   transform: translate(15%, 0);
@@ -34,10 +34,19 @@ body {
   margin-left: auto;
   margin-right: auto;
   min-width: 250px;
+} */
+.audio-player {
+  background: url('assets/player-icons/play-button.png');
+  height: 10rem;
+  background-size: contain;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1000000000;
 }
 
-.audio-player .bottom div {
-  justify-content: center;
+#play {
+  cursor: pointer;
 }
 
 #play-icon {

@@ -1,7 +1,7 @@
 import React from 'react';
 import AudioPlayer from "react-modular-audio-player";
 
-function Player () {
+export function Player () {
     let audioFiles = [
         {
             src: "https://www.listennotes.com/e/p/11b34041e804491b9704d11f283c74de/",
@@ -24,11 +24,11 @@ function Player () {
     let rearrangedPlayer = [
         {
             className: "top",
-            style: { marginBottom: "0.5rem" },
+            style: { marginBottom: "0.3rem" },
             innerComponents: [
                 {
                     type: "name",
-                    style: { width: "58%" }
+                    style: { width: "58%" , fontSize:'20px' }
                 },
                 {
                     type: "time",
@@ -39,17 +39,18 @@ function Player () {
         {
             className: "bottom",
             innerComponents: [
-                {
-                    type: "play",
-                    style: { width: "12.5%", justifyContent: "flex-end" }
-                },
+
                 {
                     type: "rewind",
                     style: { width: "12.5%", justifyContent: "flex-end" }
                 },
                 {
+                    type: "play",
+                    style: { width: "12.5%", justifyContent: "center" }
+                },
+                {
                     type: "forward",
-                    style: { width: "12.5%" }
+                    style: { width: "12.5%", justifyContent: "flex-start"  }
                 },
                 {
                     type: "loop",
@@ -57,7 +58,7 @@ function Player () {
                 },
                 {
                     type: "volume",
-                    style: { width: "48%" }
+                    style: { width: "50%", justifyContent: "flex-end" }
                 }
             ]
         }
@@ -83,12 +84,8 @@ function Player () {
             // muteEngagedIcon="assets/player-icons/mute-volume.png"
             loopIcon="assets/player-icons/replay.png"
             loopEngagedIcon="assets/player-icons/replay.png"
-            fontFamily="Roboto"
-            fontSize="1rem"
-            playerWidth="40%"
+
         />
     );
 
 }
-
-export default Player;
