@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+// import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import axios from '../axios';
 import { languages } from '../languages.json';
 import key from '../../utils/secret';
+
+// import { addTracksToPodcasts } from '../actions/actions';
 
 function Search () {
 
@@ -15,12 +18,16 @@ function Search () {
     const searchOnlyIn = ['title', 'description', 'author', 'audio'];
     const [searchLanguage, setSearchLanguage] = useState('English');
     const [podcasts, setPodcasts] = useState([]);
+    const [offset, setOffset] = useState(0);
 
-    let parameters = {
+    const tracks = [];
+    console.log('tracks starting: ', tracks);
+
+    const parameters = {
         q: searchterm,
         sort_by_date: 0,
         type: searchType,
-        offset: 0,
+        offset: offset,
         len_min: 0,
         count:20,
         len_max: 120,
@@ -31,18 +38,17 @@ function Search () {
         language: searchLanguage
     };
 
-    const tracks = [];
-
-
-
     const loadFunc = () => {
-        // console.log('languages: ', languages)
+
+        console.log('old parameters.offset: ', parameters.offset);
         async function search () {
-            const searchResults = await axios.get('https://listen-api.listennotes.com/api/v2/search', {
-                params: parameters,
-                headers: {'X-ListenAPI-Key': key['X-ListenAPI-Key']}
-            });
-            console.log('searchResults.data.results: ', searchResults.data.results);
+            const searchResults = await axios.
+                get('https://listen-api.listennotes.com/api/v2/search', {
+                    params: parameters,
+                    headers: {'X-ListenAPI-Key': key['X-ListenAPI-Key']}
+                });
+            console.log('searchResults.data: ', searchResults.data);
+
             searchResults.data.results.map( (podcast) => {
                 if (!podcast.image || podcast.image == null) {
                     let avatar_url = 'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi.ytimg.com%2Fvi%2FuF_cuBWZBgE%2Fmaxresdefault.jpg&f=1&nofb=1';
@@ -50,28 +56,29 @@ function Search () {
                 }
                 tracks.push(podcast);
             });
+            console.log('');
+            console.log('tracks after: ', tracks);
             setPodcasts(tracks);
-            console.log('Podcasts: ', podcasts);
-            // if (searchResults.data.next_offset){
-            //     console.log('searchResults.data.next_offset: ', searchResults.data.next_offset);
-            //     parameters.offset = searchResults.data.next_offset;
-            //     console.log('new parameters.offset: ', parameters.offset);
-            // }
         }
         search();
-    };
 
-    const fn = () => {
-        console.log('useEffect is working!!!');
     };
 
     useEffect( loadFunc , [searchterm]);
     // useEffect( fn , [searchterm]);
+    //
+    const more = () => {
+        parameters.offset+=10;
+        setOffset(parameters.offset);
+        console.log('new parameters.offset: ', parameters.offset);
+        console.log('search in more working!');
+        loadFunc();
+    };
 
 
     return (
         <div style={{marginTop:'60px'}}>
-
+            {console.log('This page is rendered now!')}
             <ul className="cd-hero-slider" style={{marginTop: '10px', height: '100%'}}>
 
                 <li className="selected">
@@ -79,7 +86,7 @@ function Search () {
                         <div className="container-fluid js-tm-page-content" data-page-no="1" data-page-type="gallery" style={{marginTop: '10px'}}>
                             <div className="tm-img-gallery-container">
                                 <div className="tm-img-gallery gallery-one">
-                                    { podcasts.map ( podcast => (
+                                    { podcasts && podcasts.map ( podcast => (
                                         <div key = { podcast.id } className="grid-item" style={{width: '20%'}}>
                                             <figure className="effect-bubba" style={{height:'100%'}}>
                                                 <img src={ podcast.image } alt="Image" className="img-fluid tm-img" style={{height:'100%', objectFit: 'cover'}}/>
@@ -91,21 +98,19 @@ function Search () {
                                         </div>
                                     ))}
                                 </div>
-                                <div style={{textAlign:'center', marginBottom:'50px'}}>
-                                    { podcasts.length ? <button type="button" className="btn btn-light">More</button> : ''}
-                                </div>
+                                { podcasts.length ? <p style={{textAlign:'center', marginBottom:'30px'}}><button onClick={more} type="button" className="btn btn-light" >More</button> </p>: ''}
                             </div>
                         </div>
                     </div>
                 </li>
             </ul>
-
         </div>
     );
 }
 
 export default Search;
 
+// <button onClick={more} type="button" className="btn btn-light">More</button>
 // <div className="container" style = {{color:'white', display:'flex', marginLeft: '10px'}}>
 //     <div className="media-content">
 //         <p className="title is-2" style={{textAlign: 'center', margin: '10px'}}>Search: </p>

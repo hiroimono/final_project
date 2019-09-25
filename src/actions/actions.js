@@ -7,13 +7,12 @@ export async function searchWithSearchTerm (searchTerm) {
     };
 }
 
-// export async function getFriendAndWannabes () {
-//     const { data } = await axios.get('/getfriendandwannabes.json');
-//     return {
-//         type: 'GET_FRIENDS_AND_WANNABES',
-//         friendAndWannabes: data,
-//     };
-// }
+export async function addTracksToPodcasts (tracks) {
+    return {
+        type: 'ADD_TRACKS_TO_PODCASTS',
+        tracks: tracks,
+    };
+}
 //
 // export async function newChatMessage(newMessageData){
 //     console.log('newChatMessage action is triggered!!!', newMessageData);

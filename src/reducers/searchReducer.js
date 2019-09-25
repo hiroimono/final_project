@@ -8,15 +8,15 @@ const searchReducer = ( state = {}, action ) => {
             searchTerm: action.searchTerm
         };
     }
-    //
-    // if (action.type === 'ACTION_SHOW_LAST_10_MESSAGES') {
-    //     // console.log('ACTION_SHOW_LAST_10_MESSAGES in reducer, action: ', action);
-    //     console.log('ACTION_SHOW_LAST_10_MESSAGES in reducer, state (before): ', state);
-    //     state = {
-    //         ...state,
-    //         last10Messages: action.last10Messages
-    //     };
-    // }
+
+    if (action.type === 'ADD_TRACKS_TO_PODCASTS') {
+        // console.log('ADD_TRACKS_TO_PODCASTS in reducer, action: ', action);
+        console.log('ADD_TRACKS_TO_PODCASTS in reducer, state (before): ', state);
+        state = {
+            ...state,
+            tracks: action.tracks
+        };
+    }
     //
     // if (action.type === 'ACTION_ONLINE_USER_LIST') {
     //     // console.log('ACTION_SHOW_LAST_10_MESSAGES in reducer, action: ', action);

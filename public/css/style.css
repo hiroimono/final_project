@@ -22,6 +22,10 @@ body {
 }
 
 .audio-player {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translate(15%, 0);
   background-color: #cfcccc;
   padding: .5rem;
   border: solid 1px;
@@ -29,6 +33,7 @@ body {
   border-radius: 10px;
   margin-left: auto;
   margin-right: auto;
+  min-width: 250px;
 }
 
 .audio-player .bottom div {

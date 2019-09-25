@@ -9,6 +9,7 @@ import Player from './audioPlayer';
 import { HashRouter, Route } from 'react-router-dom';
 
 function Welcome() {
+    let isVisible = false;
     return (
         <HashRouter>
             <Navbar />
@@ -16,7 +17,7 @@ function Welcome() {
             <Route exact path="/login" component={Login}/>
             <Route exact path="/search" component={Search}/>
             <Route exact path="/favorites" component={Favorites}/>
-            <Player />
+            { isVisible ? <Player /> : null }
             <Footer />
         </HashRouter>
     );
