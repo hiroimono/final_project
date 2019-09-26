@@ -227,6 +227,12 @@ button:focus {
   background-color: #447fca;
 }
 
+.cd-slider-nav .nav-item:nth-of-type(6).selected .nav-link,
+.cd-slider-nav .nav-item:nth-of-type(6) .nav-link:hover,
+.cd-slider-nav .nav-item:nth-of-type(6) .nav-link:focus {
+  background-color: #ff7979;
+}
+
 .tm-bg-white-translucent {
   background-color: rgba(255, 255, 255, 0.8);
 }

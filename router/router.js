@@ -28,14 +28,20 @@ const uploader = multer({
 });
 /////////////////FILE UPLOAD///////////////////
 
+////////////// MIDDLEWARE CHECK////////////////
+
+// const { requireLogin, requireLogout }	= require('../utils/middleware.js');
+
+////////////// MIDDLEWARE CHECK////////////////
+
 const router = express.Router();
 
-// router.get('/', (req, res) => {
-//     (!req.session.userId) ? res.redirect('/welcome') : res.redirect('/app') ;
+// router.get('/welcome', (req, res) => {
+//     res.redirect('/welcome#/best') ;
 // });
 
 
-router.post('/register', (req, res) => {
+router.post('/register-user', (req, res) => {
     console.log(req.body);
     var { name, surname, email, password } = req.body;
     hash(password)
@@ -74,8 +80,9 @@ router.post('/login', (req, res) => {
                     if(match){
                         console.log('user logged in!!!');
                         req.session.userId = result[0].id;
-                        console.log('req.session userId: ', req.session.userId);
+                        console.log('/login, router side, req.session userId: ', req.session.userId);
                         req.session.LOGIN= true;
+                        console.log('/login, router side, req.session.LOGIN: ', req.session.LOGIN);
                         res.json({ success: true });
                     } else {
                         res.json({success: false });
@@ -91,13 +98,15 @@ router.post('/login', (req, res) => {
             res.json({success: false});
         });
 });
-//
-// router.get('/logout', function(req, res) {
-//     req.session.userId = null;
-//     console.log('/logout, router side, req.session.userId: ', req.session.userId);
-//     res.redirect('/welcome');
-// });
-//
+
+router.get('/logout', function(req, res) {
+    req.session.userId = null;
+    req.session.LOGIN = false;
+    console.log('/logout, router side, req.session.userId: ', req.session.userId);
+    console.log('/logout, router side, req.session.LOGIN: ', req.session.LOGIN);
+    res.redirect('/welcome');
+});
+
 // router.get('/api/user/:id', (req, res) => {
 //     const userId = req.params.id;
 //     console.log('/api/user/id, userId: ', userId);
@@ -109,18 +118,18 @@ router.post('/login', (req, res) => {
 //         })
 //         .catch(err => console.log('/api/user/id, router side error: ', err));
 // });
-//
-// router.get('/getuser', (req, res) => {
-//     const userId = req.session.userId;
-//     console.log('/getuser, userId: ', req.session.userId);
-//     db.getUserInfo(userId)
-//         .then((result) => {
-//             res.json(result);
-//             console.log('/getuser, db.getUserInfo id: ', result.id, 'name: ', result.name);
-//         })
-//         .catch(err => console.log('/getuser, router side error: ', err));
-// });
-//
+
+router.get('/getuser', (req, res) => {
+    const userId = req.session.userId;
+    console.log('/getuser, userId: ', req.session.userId);
+    db.getUserInfo(userId)
+        .then((result) => {
+            res.json(result);
+            console.log('/getuser, db.getUserInfo id: ', result.id, 'name: ', result.name);
+        })
+        .catch(err => console.log('/getuser, router side error: ', err));
+});
+
 // // app.post('/upload', uploader.single('file'), (req, res) => {
 // router.post('/upload-profile-img', uploader.single('file'), s3.upload, (req, res) => {
 //     //req.file - the file that was just uploaded

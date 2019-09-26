@@ -37,7 +37,7 @@ body {
 } */
 .audio-player {
   background: url('assets/player-icons/play-button.png');
-  height: 10rem;
+  height: 30rem;
   background-size: contain;
   display: flex;
   flex-direction: column;
@@ -50,9 +50,20 @@ body {
 }
 
 #play-icon {
-  height: 4rem !important;
+  height: 10rem !important;
+  width: 15rem !important;
 }
 
 #loop-icon {
   height: 3rem !important;
+}
+
+.carousel-item {
+  height: 100%;
+  min-height: 320px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }

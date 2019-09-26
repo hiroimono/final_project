@@ -156,7 +156,7 @@ Slider
 
 -------------------------------- */
 .cd-hero {
-  position: relative;
+  /* position: relative; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

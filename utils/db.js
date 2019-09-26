@@ -30,15 +30,15 @@ exports.getPassword = email => {
 //     console.log('userId in database: ', userid);
 //     return db.query(`UPDATE userlist SET img_url = $2 WHERE id = $1 RETURNING img_url`, [userid, img_url]);
 // };
-//
-// exports.getUserInfo = (userId) => {
-//     return db.query (`SELECT id, name, surname, img_url, bio FROM userlist WHERE id = $1`, [userId])
-//         .then(({rows}) => {
-//             // console.log('rows',rows[0]);
-//             return rows[0];
-//         });
-// };
-//
+
+exports.getUserInfo = (userId) => {
+    return db.query (`SELECT id, name, surname, img_url, bio FROM userlist WHERE id = $1`, [userId])
+        .then(({rows}) => {
+            // console.log('rows',rows[0]);
+            return rows[0];
+        });
+};
+
 // exports.updateBio = (userId, bio) => {
 //     return db.query(`UPDATE userlist SET bio = $2 WHERE id = $1 RETURNING bio`, [userId, bio]);
 // };

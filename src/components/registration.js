@@ -7,8 +7,10 @@ export default class Registration extends React.Component {
         super(props);
         this.handleChange = this.handleChange.bind(this);
         this.register = this.register.bind(this);
+        this.isAccepted = this.isAccepted.bind(this);
         this.state = {
-            error: false
+            error: false,
+            isAccepted : false
         };
     }
 
@@ -17,6 +19,19 @@ export default class Registration extends React.Component {
         this.setState({
             [e.target.name]: e.target.value,
         });
+    }
+
+    isAccepted(e) {
+        if(e.target.checked)
+        {
+            this.setState({
+                isAccepted: true
+            });
+        } else {
+            this.setState({
+                isAccepted: false
+            });
+        }
     }
 
     register (e) {
@@ -30,20 +45,26 @@ export default class Registration extends React.Component {
         };
         // console.log(name, surname, email, password);
         console.log('user: ', user);
-        axios
-            .post('/register', user)
-            .then((res) => {
-                if(res.data.success){
-                    console.log('/register, data of registered user: ', res.data);
-                    location.replace("/welcome#/login");
-                } else {
+        if(this.state.isAccepted == true) {
+            axios
+                .post('/register-user', user)
+                .then((res) => {
+                    if(res.data.success){
+                        console.log('/register, data of registered user: ', res.data);
+                        location.replace("/welcome#/login");
+                    } else {
+                        this.setState({error: true});
+                    }
+                })
+                .catch(function(err){
+                    console.log('/register axios error: ', err);
                     this.setState({error: true});
-                }
-            })
-            .catch(function(err){
-                console.log('/register axios error: ', err);
-                this.setState({error: true});
-            });
+                });
+        } else {
+            console.log('/register isLogin error');
+            this.setState({error: true});
+        }
+
     }
 
     render(){
@@ -81,7 +102,9 @@ export default class Registration extends React.Component {
                         />
                     </div>
                     <div className="form-check" style = {{ textAlign: 'center' }}>
-                        <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+                        <input type="checkbox" className="form-check-input" id="exampleCheck1"
+                            name='isAccepted'
+                            onClick={ this.isAccepted }/>
                         <label className="form-check-label" htmlFor="exampleCheck1">I agree to the <a href="#">terms and conditions</a></label>
                     </div>
                     <div style = {{ textAlign: 'center' }}>

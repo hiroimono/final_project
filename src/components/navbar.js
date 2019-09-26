@@ -42,19 +42,19 @@ function Navbar () {
                     <div className="collapse navbar-toggleable-md text-xs-center tm-navbar" id="tmNavbar" style={{justifyContent:'flex-end'}}>
                         <ul className="nav navbar-nav">
                             <li className="nav-item">
-                                <Link to="/search" className="nav-link"> Discover New Podcasts </Link>
+                                <Link to="/search" className="nav-link" data-no="1"> Discover New Podcasts </Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#0" data-no="1">Multi One <span className="sr-only">(current)</span></a>
+                                <Link to="/best" className="nav-link" data-no="2"> Best Episodes </Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/favorites" className="nav-link"> My Favorites </Link>
+                                <Link to="/favorites" className="nav-link" data-no="3"> My Favorites </Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/login" className="nav-link"> Log in </Link>
+                                <Link to="/login" className="nav-link" data-no="4"> Log in </Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/" className="nav-link bg-success"> Sign up free </Link>
+                                <Link to="/register" className="nav-link bg-success" data-no="5"> Sign up free </Link>
                             </li>
                         </ul>
                     </div>

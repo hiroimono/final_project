@@ -35,7 +35,7 @@ export default class Login extends React.Component {
             .then((res) => {
                 if (res.data.success) {
                     console.log('/login, data of loggedin user: ', res.data);
-                    location.replace("/search");
+                    location.replace("/");
                 } else {
                     this.setState({ error: true });
                 }
@@ -74,7 +74,7 @@ export default class Login extends React.Component {
                         >Log in</button>
                     </div>
                 </form>
-                <p style = {{textAlign: 'center'}}>Have not registered yet? <Link to="/"> Register </Link></p>
+                <p style = {{textAlign: 'center'}}>Have not registered yet? <Link to="/register"> Register </Link></p>
             </div>
         );
     }

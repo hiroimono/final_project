@@ -10,7 +10,7 @@ import AudioPlayer from "react-modular-audio-player";
 
 // import { addTracksToPodcasts } from '../actions/actions';
 
-function Search () {
+function Search() {
 
     const searchterm = useSelector ( state => {
         console.log('state.search.searchTerm: ', state.search.searchTerm);
@@ -71,7 +71,9 @@ function Search () {
     // useEffect( fn , [searchterm]);
     //
     const more = () => {
+        console.log('parameters.offset: ', parameters.offset);
         parameters.offset+=10;
+
         setOffset(parameters.offset);
         console.log('new parameters.offset: ', parameters.offset);
         console.log('search in more working!');
@@ -94,7 +96,6 @@ function Search () {
             ]
         }
     ];
-
 
     return (
         <div style={{marginTop:'60px'}}>
@@ -209,7 +210,7 @@ function Search () {
                                     </MediaQuery>
 
                                 </div>
-                                { podcasts.length ? <p style={{textAlign:'center', marginBottom:'30px'}}><button onClick={more} type="button" className="btn btn-light" >More</button> </p>: ''}
+                                { podcasts.length ? <p style={{textAlign:'center', marginBottom:'30px'}}><button onClick={ more } type="button" className="btn btn-light" >More</button> </p>: ''}
                             </div>
                         </div>
                     </div>
