@@ -25,6 +25,7 @@ function Search() {
 
     const tracks = [];
     console.log('tracks starting: ', tracks);
+    console.log('podcasts starting: ', podcasts);
 
     const parameters = {
         q: searchterm,
@@ -52,16 +53,30 @@ function Search() {
                 });
             console.log('searchResults.data: ', searchResults.data);
 
-            searchResults.data.results.map( (podcast) => {
+            let myTracks = [...podcasts, ...searchResults.data.results.map( (podcast) => {
                 if (!podcast.image || podcast.image == null) {
-                    let avatar_url = 'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi.ytimg.com%2Fvi%2FuF_cuBWZBgE%2Fmaxresdefault.jpg&f=1&nofb=1';
-                    podcast.image = avatar_url;
+                    return {
+                        ...podcast,
+                        image : 'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi.ytimg.com%2Fvi%2FuF_cuBWZBgE%2Fmaxresdefault.jpg&f=1&nofb=1'
+                    };
+                } else {
+                    return podcast;
                 }
-                tracks.push(podcast);
-            });
+            })];
+
+
+
+
+            // searchResults.data.results.map( (podcast) => {
+            //     if (!podcast.image || podcast.image == null) {
+            //         let avatar_url = 'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi.ytimg.com%2Fvi%2FuF_cuBWZBgE%2Fmaxresdefault.jpg&f=1&nofb=1';
+            //         podcast.image = avatar_url;
+            //     }
+            //     tracks.push(podcast);
+            // });
             console.log('');
-            console.log('tracks after: ', tracks);
-            setPodcasts(tracks);
+            console.log('tracks after: ', myTracks);
+            setPodcasts(myTracks);
         }
         search();
 
