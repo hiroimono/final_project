@@ -30,15 +30,15 @@ const uploader = multer({
 
 ////////////// MIDDLEWARE CHECK////////////////
 
-// const { requireLogin, requireLogout }	= require('../utils/middleware.js');
+const { requireLogin, requireLogout }	= require('../utils/middleware.js');
 
 ////////////// MIDDLEWARE CHECK////////////////
 
 const router = express.Router();
 
-// router.get('/', (req, res) => {
-//     res.redirect('/welcome') ;
-// });
+router.get('/', (req, res) => {
+    res.redirect('/welcome') ;
+});
 
 
 router.post('/register-user', (req, res) => {

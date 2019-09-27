@@ -59,7 +59,7 @@ export function NavbarAfterLogin (props) {
                             </li>
 
                             <li className="nav-item" style={{ alignSelf: 'center', height:'50px', width: '80px', marginRight:'10px'}}>
-                                <ProfilePic className="nav-link" data-no="5" style={{height:'100%', width: '100%'}} data-toggle="modal" data-target="#modalPush"
+                                <ProfilePic className="nav-link" data-no="5" style={{height:'100%', width: '100%'}}
                                     image={props.image}
                                     name={props.name}
                                     surname={props.surname}
@@ -85,3 +85,5 @@ export function ProfilePic(props) {
         <img style={{borderRadius: '10%', height: '100%', width: '450px', cursor: 'pointer', objectFit: 'cover'}} className="profilePic" onClick={props.clickHandler} src={image} alt={`${props.name} ${props.surname}`} />
     );
 }
+
+// data-toggle="modal" data-target="#modalPush"

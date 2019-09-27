@@ -5,21 +5,26 @@ import Login from './login';
 import Navbar from './navbar';
 import Footer from './footer';
 import BestEpisodes from './bestEpisodes';
-// import Favorites from './favorites';
+import Slider from './slider';
 import {Player} from './audioPlayer';
-import { HashRouter, Route } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 
 function Welcome() {
     let isVisible = false;
     return (
         <HashRouter>
+
             <Navbar />
-            <Route exact path="/best" component={BestEpisodes}/>
-            <Route exact path="/register" component={Registration}/>
-            <Route exact path="/login" component={Login}/>
-            <Route exact path="/search" component={Search}/>
+            <Switch>
+                <Route exact path="/best" component={BestEpisodes}/>
+                <Route exact path="/register" component={Registration}/>
+                <Route exact path="/login" component={Login}/>
+                <Route exact path="/search" component={Search}/>
+                <Route component={Slider}/>
+            </Switch>
             { isVisible ? <Player /> : null }
             <Footer />
+
         </HashRouter>
     );
 }

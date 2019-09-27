@@ -24,7 +24,7 @@ function Navbar () {
             <nav className="navbar">
                 <div className="tm-navbar-bg" style={{fontSize:'12px', height: '60px', overflow:'hidden', color: 'white', display:'flex'}}>
 
-                    <a className="navbar-brand" href="/" style={{justifyContent:'flex-start'}}>
+                    <a className="navbar-brand" href="/welcome" style={{justifyContent:'flex-start'}}>
                         <img src="assets/planet.png" style={{height: '45px'}} />
                         <p style={{fontFamily: 'Big Shoulders Display', color: '#3f97c9'}}>BluePlanet</p>
                     </a>

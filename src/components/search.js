@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import MediaQuery from 'react-responsive';
+// import MediaQuery from 'react-responsive';
 // import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import axios from '../axios';
@@ -18,7 +18,7 @@ function Search() {
     });
 
     const searchType = ['podcast'];
-    const searchOnlyIn = ['title', 'description'];
+    const searchOnlyIn = ['title'];
     const [searchLanguage, setSearchLanguage] = useState('English');
     const [podcasts, setPodcasts] = useState([]);
     const [offset, setOffset] = useState(0);
@@ -53,7 +53,7 @@ function Search() {
                 });
             console.log('searchResults.data: ', searchResults.data);
 
-            let myTracks = [...podcasts, ...searchResults.data.results.map( (podcast) => {
+            let myTracks = [...searchResults.data.results.map( (podcast) => {
                 if (!podcast.image || podcast.image == null) {
                     return {
                         ...podcast,
@@ -63,10 +63,6 @@ function Search() {
                     return podcast;
                 }
             })];
-
-
-
-
             // searchResults.data.results.map( (podcast) => {
             //     if (!podcast.image || podcast.image == null) {
             //         let avatar_url = 'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi.ytimg.com%2Fvi%2FuF_cuBWZBgE%2Fmaxresdefault.jpg&f=1&nofb=1';
@@ -85,6 +81,43 @@ function Search() {
     useEffect( loadFunc , [searchterm]);
     // useEffect( fn , [searchterm]);
     //
+
+    const moreLoadFunc = () => {
+
+        console.log('old parameters.offset: ', parameters.offset);
+        async function search () {
+            const searchResults = await axios.
+                get('https://listen-api.listennotes.com/api/v2/search', {
+                    params: parameters,
+                    headers: {'X-ListenAPI-Key': key['X-ListenAPI-Key']}
+                });
+            console.log('searchResults.data: ', searchResults.data);
+
+            let myTracks = [...podcasts, ...searchResults.data.results.map( (podcast) => {
+                if (!podcast.image || podcast.image == null) {
+                    return {
+                        ...podcast,
+                        image : 'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi.ytimg.com%2Fvi%2FuF_cuBWZBgE%2Fmaxresdefault.jpg&f=1&nofb=1'
+                    };
+                } else {
+                    return podcast;
+                }
+            })];
+            // searchResults.data.results.map( (podcast) => {
+            //     if (!podcast.image || podcast.image == null) {
+            //         let avatar_url = 'https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi.ytimg.com%2Fvi%2FuF_cuBWZBgE%2Fmaxresdefault.jpg&f=1&nofb=1';
+            //         podcast.image = avatar_url;
+            //     }
+            //     tracks.push(podcast);
+            // });
+            console.log('');
+            console.log('tracks after: ', myTracks);
+            setPodcasts(myTracks);
+        }
+        search();
+
+    };
+
     const more = () => {
         console.log('parameters.offset: ', parameters.offset);
         parameters.offset+=10;
@@ -92,7 +125,7 @@ function Search() {
         setOffset(parameters.offset);
         console.log('new parameters.offset: ', parameters.offset);
         console.log('search in more working!');
-        loadFunc();
+        moreLoadFunc();
     };
 
     let rearrangedPlayer = [
@@ -123,109 +156,36 @@ function Search() {
                             <div className="tm-img-gallery-container">
                                 <div className="tm-img-gallery gallery-one">
 
-                                    <MediaQuery minDeviceWidth = { 992 }>
-                                        { podcasts && podcasts.map ( podcast => (
-                                            <div key = { podcast.id } className="grid-item" style={{width: '12,5%'}}>
-                                                <figure className="effect-bubba" style={{height:'100%'}}>
-                                                    <img src={ podcast.image } alt="Image" className="img-fluid tm-img" style={{height:'100%', objectFit: 'cover'}}/>
-                                                    <figcaption>
-                                                        <p className="tm-figure-description" style={{fontSize: '1.5rem'}}>{ podcast.title_original } </p>
-                                                        <AudioPlayer
-                                                            audioFiles={[
-                                                                {
-                                                                    src: podcast.audio,
-                                                                    title: podcast.podcast_title_original,
-                                                                    artist: "Adele"
-                                                                }
-                                                            ]}
-                                                            rearrange={rearrangedPlayer}
-                                                            playerWidth="10rem"
-                                                            iconSize="18rem"
-                                                        />
 
-                                                    </figcaption>
-                                                </figure>
-                                            </div>
-                                        ))}
-                                    </MediaQuery>
+                                    { podcasts && podcasts.map ( podcast => (
+                                        <div key = { podcast.id } className="grid-item" style={{width: '12,5%'}}>
+                                            <figure className="effect-bubba" style={{height:'100%'}}>
+                                                <img src={ podcast.image } alt="Image" className="img-fluid tm-img" style={{height:'100%', objectFit: 'cover'}}/>
+                                                <figcaption>
+                                                    <p className="tm-figure-description" style={{fontSize: '1.5rem'}}>{ podcast.title_original } </p>
+                                                    <AudioPlayer
+                                                        audioFiles={[
+                                                            {
+                                                                src: podcast.audio,
+                                                                title: podcast.podcast_title_original,
+                                                                artist: "Adele"
+                                                            }
+                                                        ]}
+                                                        rearrange={rearrangedPlayer}
+                                                        playerWidth="10rem"
+                                                        iconSize="18rem"
+                                                    />
 
-                                    <MediaQuery minDeviceWidth = { 768 }>
-                                        { podcasts && podcasts.map ( podcast => (
-                                            <div key = { podcast.id } className="grid-item" style={{width: '20%'}}>
-                                                <figure className="effect-bubba" style={{height:'100%'}}>
-                                                    <img src={ podcast.image } alt="Image" className="img-fluid tm-img" style={{height:'100%', objectFit: 'cover'}}/>
-                                                    <figcaption>
-                                                        <p className="tm-figure-description" style={{fontSize: '1.5rem'}}>{ podcast.title_original } </p>
-                                                        <AudioPlayer
-                                                            audioFiles={[
-                                                                {
-                                                                    src: podcast.audio,
-                                                                    title: podcast.podcast_title_original,
-                                                                    artist: "Adele"
-                                                                }
-                                                            ]}
-                                                            rearrange={rearrangedPlayer}
-                                                            playerWidth="10rem"
-                                                            iconSize="18rem"
-                                                        />
-                                                    </figcaption>
-                                                </figure>
-                                            </div>
-                                        ))}
-                                    </MediaQuery>
+                                                </figcaption>
+                                            </figure>
+                                        </div>
+                                    ))}
 
-                                    <MediaQuery minDeviceWidth = { 480 }>
-                                        { podcasts && podcasts.map ( podcast => (
-                                            <div key = { podcast.id } className="grid-item" style={{width: '33%'}}>
-                                                <figure className="effect-bubba" style={{height:'100%'}}>
-                                                    <img src={ podcast.image } alt="Image" className="img-fluid tm-img" style={{height:'100%', objectFit: 'cover'}}/>
-                                                    <figcaption>
-                                                        <p className="tm-figure-description" style={{fontSize: '1.5rem'}}>{ podcast.title_original } </p>
-                                                        <AudioPlayer
-                                                            audioFiles={[
-                                                                {
-                                                                    src: podcast.audio,
-                                                                    title: podcast.podcast_title_original,
-                                                                    artist: "Adele"
-                                                                }
-                                                            ]}
-                                                            rearrange={rearrangedPlayer}
-                                                            playerWidth="10rem"
-                                                            iconSize="18rem"
-                                                        />
-                                                    </figcaption>
-                                                </figure>
-                                            </div>
-                                        ))}
-                                    </MediaQuery>
 
-                                    <MediaQuery minDeviceWidth = { 320 }>
-                                        { podcasts && podcasts.map ( podcast => (
-                                            <div key = { podcast.id } className="grid-item" style={{width: '50%'}}>
-                                                <figure className="effect-bubba" style={{height:'100%'}}>
-                                                    <img src={ podcast.image } alt="Image" className="img-fluid tm-img" style={{height:'100%', objectFit: 'cover'}}/>
-                                                    <figcaption>
-                                                        <p className="tm-figure-description" style={{fontSize: '1.5rem'}}>{ podcast.title_original } </p>
-                                                        <AudioPlayer
-                                                            audioFiles={[
-                                                                {
-                                                                    src: podcast.audio,
-                                                                    title: podcast.podcast_title_original,
-                                                                    artist: "Adele"
-                                                                }
-                                                            ]}
-                                                            rearrange={rearrangedPlayer}
-                                                            playerWidth="10rem"
-                                                            iconSize="18rem"
-                                                        />
-                                                    </figcaption>
-                                                </figure>
-                                            </div>
-                                        ))}
-                                    </MediaQuery>
+
 
                                 </div>
-                                { podcasts.length ? <p style={{textAlign:'center', marginBottom:'30px'}}><button onClick={ more } type="button" className="btn btn-light" >More</button> </p>: ''}
+                                { podcasts.length ? <p style={{textAlign:'center', marginBottom:'50px'}}><button onClick={ more } type="button" className="btn btn-light" style={{backgroundColor:'rgba(0,0,0,0.70)', color:'white'}} >More</button> </p>: ''}
                             </div>
                         </div>
                     </div>
@@ -236,6 +196,84 @@ function Search() {
 }
 
 export default Search;
+
+// <MediaQuery minDeviceWidth = { 992 }>
+// </MediaQuery>
+
+// <MediaQuery minDeviceWidth = { 768 }>
+//     { podcasts && podcasts.map ( podcast => (
+//         <div key = { podcast.id } className="grid-item" style={{width: '20%'}}>
+//             <figure className="effect-bubba" style={{height:'100%'}}>
+//                 <img src={ podcast.image } alt="Image" className="img-fluid tm-img" style={{height:'100%', objectFit: 'cover'}}/>
+//                 <figcaption>
+//                     <p className="tm-figure-description" style={{fontSize: '1.5rem'}}>{ podcast.title_original } </p>
+//                     <AudioPlayer
+//                         audioFiles={[
+//                             {
+//                                 src: podcast.audio,
+//                                 title: podcast.podcast_title_original,
+//                                 artist: "Adele"
+//                             }
+//                         ]}
+//                         rearrange={rearrangedPlayer}
+//                         playerWidth="10rem"
+//                         iconSize="18rem"
+//                     />
+//                 </figcaption>
+//             </figure>
+//         </div>
+//     ))}
+// </MediaQuery>
+//
+// <MediaQuery minDeviceWidth = { 480 }>
+//     { podcasts && podcasts.map ( podcast => (
+//         <div key = { podcast.id } className="grid-item" style={{width: '33%'}}>
+//             <figure className="effect-bubba" style={{height:'100%'}}>
+//                 <img src={ podcast.image } alt="Image" className="img-fluid tm-img" style={{height:'100%', objectFit: 'cover'}}/>
+//                 <figcaption>
+//                     <p className="tm-figure-description" style={{fontSize: '1.5rem'}}>{ podcast.title_original } </p>
+//                     <AudioPlayer
+//                         audioFiles={[
+//                             {
+//                                 src: podcast.audio,
+//                                 title: podcast.podcast_title_original,
+//                                 artist: "Adele"
+//                             }
+//                         ]}
+//                         rearrange={rearrangedPlayer}
+//                         playerWidth="10rem"
+//                         iconSize="18rem"
+//                     />
+//                 </figcaption>
+//             </figure>
+//         </div>
+//     ))}
+// </MediaQuery>
+//
+// <MediaQuery minDeviceWidth = { 320 }>
+//     { podcasts && podcasts.map ( podcast => (
+//         <div key = { podcast.id } className="grid-item" style={{width: '50%'}}>
+//             <figure className="effect-bubba" style={{height:'100%'}}>
+//                 <img src={ podcast.image } alt="Image" className="img-fluid tm-img" style={{height:'100%', objectFit: 'cover'}}/>
+//                 <figcaption>
+//                     <p className="tm-figure-description" style={{fontSize: '1.5rem'}}>{ podcast.title_original } </p>
+//                     <AudioPlayer
+//                         audioFiles={[
+//                             {
+//                                 src: podcast.audio,
+//                                 title: podcast.podcast_title_original,
+//                                 artist: "Adele"
+//                             }
+//                         ]}
+//                         rearrange={rearrangedPlayer}
+//                         playerWidth="10rem"
+//                         iconSize="18rem"
+//                     />
+//                 </figcaption>
+//             </figure>
+//         </div>
+//     ))}
+// </MediaQuery>
 
 // <button onClick={more} type="button" className="btn btn-light">More</button>
 // <div className="container" style = {{color:'white', display:'flex', marginLeft: '10px'}}>

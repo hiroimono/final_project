@@ -72,7 +72,7 @@ function Slider () {
     // ];
 
     return (
-        <div style={{marginTop:'60px'}}>
+        <div>
             <div id="carouselExampleIndicators" className="carousel slide" data-ride="carousel">
                 <ol className="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
@@ -100,7 +100,7 @@ function Slider () {
 
                 <div className="carousel-inner" role="listbox">
                     <div className="carousel-item active" style={{backgroundImage: "url('/assets/pictures/slide4.jpg')"}}>
-                        <div className="carousel-caption d-none d-md-block">
+                        <div className="carousel-caption d-none d-md-block" style={{paddingBottom:'300px', left:'0'}}>
                             <h1 className="display-4" style={{fontSize: '70px', color: '#333333'}}>Welcome to BluePlanet!</h1>
                             <p className="lead" style={{fontSize: '40px', color: '#f9ca24'}}>Are you ready to discover Podcasts?</p>
                         </div>
@@ -108,8 +108,8 @@ function Slider () {
                     { podcasts && podcasts.map ( podcast => (
 
                         <div key = { podcast.id } className="carousel-item" style={{backgroundImage: 'url('+podcast.image+')'}}>
-                            <a href={ podcast.website} target="_blank">
-                                <div className="carousel-caption d-none d-md-block">
+                            <a href={ podcast.website} target="_blank" style={{alignSelf:'center'}}>
+                                <div className="carousel-caption d-none d-md-block" style={{paddingBottom:'80px'}}>
                                     <h1 className="display-4" style={{fontSize: '40px', color: '#ffff', fontWeight:'bold'}}>{podcast.title}</h1>
 
                                 </div>

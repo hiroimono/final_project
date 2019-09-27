@@ -63,16 +63,16 @@ export default class BioEditor extends React.Component {
                             </textarea>
                         </div>
 
-                        <button type="submit" className="pull-xs-right tm-submit-btn"
-                            onClick={this.updateBio}
-                        >
-                            Save
-                        </button>
-
-                        <button type="submit" className="pull-xs-right tm-submit-btn"
+                        <button type="submit" className="pull-xs-right tm-submit-btn" style={{margin:'5px'}}
                             onClick={this.cancelEdit}
                         >
                             Cancel
+                        </button>
+
+                        <button type="submit" className="pull-xs-right tm-submit-btn" style={{margin:'5px'}}
+                            onClick={this.updateBio}
+                        >
+                            Save
                         </button>
 
                     </div>

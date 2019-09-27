@@ -3,7 +3,7 @@ import { Link} from 'react-router-dom';
 
 function Footer () {
     return (
-        <footer className="footer" style = {{ position:'fixed', bottom:'0', width: '100%', padding: '5px'}}>
+        <footer className="footer" style = {{ position:'fixed', bottom:'0', width: '100%', padding: '5px', backgroundColor:'rgba(0,0,0,0.70)'}}>
             <div className="content has-text-centered">
                 <p style={{textAlign:'center'}}>
                     <Link to="/"><i className="fas fa-at"></i><strong> BluePlanet </strong></Link>

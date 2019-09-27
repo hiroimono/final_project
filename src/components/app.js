@@ -7,10 +7,11 @@ import { NavbarAfterLogin } from './navbarAfterLogin';
 import Footer from './footer';
 import { ProfileImgUploader } from './profileImgUploader';
 import Profile from './profile';
+import Slider from './slider';
 import BestEpisodes from './bestEpisodes';
 import Favorites from './favorites';
 import {Player} from './audioPlayer';
-import { HashRouter, Route } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 
 export default class App extends React.Component {
     constructor(props){
@@ -79,23 +80,26 @@ export default class App extends React.Component {
                         showImgUploder = { this.showImgUploder }
                     />
                     <div>
-                        <Route exact path="/profile" render = {
-                            () => (
-                                <Profile
-                                    name={this.state.name}
-                                    surname={this.state.surname}
-                                    id={this.state.id}
-                                    bio={this.state.bio}
-                                    image={this.state.image}
-                                    clickHandler={this.showImgUploder}
-                                    setBio={this.setBio}
-                                    otherProfileId={this.state.otherProfileId}
-                                />
-                            )}
-                        />
-                        <Route exact path="/bestepisodes" component={BestEpisodes}/>
-                        <Route exact path="/search" component={Search}/>
-                        <Route exact path="/apifavorites" component={Favorites}/>
+                        <Switch>
+                            <Route exact path="/profile" render = {
+                                () => (
+                                    <Profile
+                                        name={this.state.name}
+                                        surname={this.state.surname}
+                                        id={this.state.id}
+                                        bio={this.state.bio}
+                                        image={this.state.image}
+                                        clickHandler={this.showImgUploder}
+                                        setBio={this.setBio}
+                                        otherProfileId={this.state.otherProfileId}
+                                    />
+                                )}
+                            />
+                            <Route exact path="/bestepisodes" component={BestEpisodes}/>
+                            <Route exact path="/search" component={Search}/>
+                            <Route exact path="/apifavorites" component={Favorites}/>
+                            <Route component={Slider}/>
+                        </Switch>
                     </div>
                     { this.state.imgUploaderIsVisible &&
                         <ProfileImgUploader
