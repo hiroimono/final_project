@@ -3,6 +3,7 @@ import axios from '../axios';
 import Search from './search';
 // import Registration from './registration';
 // import Login from './login';
+import Discover from './discover';
 import { NavbarAfterLogin } from './navbarAfterLogin';
 import Footer from './footer';
 import { ProfileImgUploader } from './profileImgUploader';
@@ -95,6 +96,7 @@ export default class App extends React.Component {
                                     />
                                 )}
                             />
+                            <Route exact path="/discover" component={Discover}/>
                             <Route exact path="/bestepisodes" component={BestEpisodes}/>
                             <Route exact path="/search" component={Search}/>
                             <Route exact path="/apifavorites" component={Favorites}/>

@@ -42,14 +42,12 @@ export function NavbarAfterLogin (props) {
                     <div className="collapse navbar-toggleable-md text-xs-center" id="tmNavbar" style={{justifyContent:'flex-end', height:'60px'}}>
                         <ul className="nav navbar-nav" style={{ height:'100%'}}>
                             <li className="nav-item" style={{ alignSelf: 'center'}}>
-                                <Link to="/search" className="nav-link" data-no="1"> Discover New Podcasts </Link>
+                                <Link to="/discover" className="nav-link" data-no="1"> Discover New Podcasts </Link>
                             </li>
                             <li className="nav-item" style={{ alignSelf: 'center'}}>
                                 <Link to="/bestepisodes" className="nav-link" data-no="2"> Best Episodes </Link>
                             </li>
-                            <li className="nav-item" style={{ alignSelf: 'center'}}>
-                                <Link to="/apifavorites" className="nav-link" data-no="3"> My Favorites </Link>
-                            </li>
+
                             <li className="nav-item" style={{ alignSelf: 'center', color: 'white'}}>
                                 <Link to='/profile' className="nav-link" data-no="4" > { ( props.name && props.surname ) && <p> Welcome <span style={{color:'#1fabfa', fontWeight:'bold'}}>{ props.name } { props.surname }</span> </p> } </Link>
                             </li>
@@ -85,5 +83,8 @@ export function ProfilePic(props) {
         <img style={{borderRadius: '10%', height: '100%', width: '450px', cursor: 'pointer', objectFit: 'cover'}} className="profilePic" onClick={props.clickHandler} src={image} alt={`${props.name} ${props.surname}`} />
     );
 }
+
+
+
 
 // data-toggle="modal" data-target="#modalPush"

@@ -4,6 +4,7 @@ import Registration from './registration';
 import Login from './login';
 import Navbar from './navbar';
 import Footer from './footer';
+import Discover from './discover';
 import BestEpisodes from './bestEpisodes';
 import Slider from './slider';
 import {Player} from './audioPlayer';
@@ -20,6 +21,7 @@ function Welcome() {
                 <Route exact path="/register" component={Registration}/>
                 <Route exact path="/login" component={Login}/>
                 <Route exact path="/search" component={Search}/>
+                <Route exact path="/discover" component={Discover}/>
                 <Route component={Slider}/>
             </Switch>
             { isVisible ? <Player /> : null }

@@ -24,7 +24,7 @@ function BestEpisodes () {
 
     const parameters = {
         page: page,
-        genre_ids: '93',
+        genre_ids: '140',
         region: country,
         language: language,
         safe_mode: 1

@@ -42,7 +42,7 @@ function Navbar () {
                     <div className="collapse navbar-toggleable-md text-xs-center tm-navbar" id="tmNavbar" style={{justifyContent:'flex-end'}}>
                         <ul className="nav navbar-nav">
                             <li className="nav-item">
-                                <Link to="/search" className="nav-link" data-no="1"> Discover New Podcasts </Link>
+                                <Link to="/discover" className="nav-link" data-no="1"> Discover New Podcasts </Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="/best" className="nav-link" data-no="2"> Best Episodes </Link>
