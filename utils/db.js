@@ -24,12 +24,12 @@ exports.getPassword = email => {
             return rows;
         });
 };
-//
-// exports.updateUserImage = (userId, img_url) => {
-//     let userid = userId || null;
-//     console.log('userId in database: ', userid);
-//     return db.query(`UPDATE userlist SET img_url = $2 WHERE id = $1 RETURNING img_url`, [userid, img_url]);
-// };
+
+exports.updateUserImage = (userId, img_url) => {
+    let userid = userId || null;
+    console.log('userId in database: ', userid);
+    return db.query(`UPDATE userlist SET img_url = $2 WHERE id = $1 RETURNING img_url`, [userid, img_url]);
+};
 
 exports.getUserInfo = (userId) => {
     return db.query (`SELECT id, name, surname, img_url, bio FROM userlist WHERE id = $1`, [userId])
@@ -39,10 +39,10 @@ exports.getUserInfo = (userId) => {
         });
 };
 
-// exports.updateBio = (userId, bio) => {
-//     return db.query(`UPDATE userlist SET bio = $2 WHERE id = $1 RETURNING bio`, [userId, bio]);
-// };
-//
+exports.updateBio = (userId, bio) => {
+    return db.query(`UPDATE userlist SET bio = $2 WHERE id = $1 RETURNING bio`, [userId, bio]);
+};
+
 // exports.searchUser = (searchterm) => {
 //     return db.query(`SELECT * FROM userlist WHERE name || ' ' || surname ILIKE $1;`, [searchterm + '%'] )
 //         .then(({rows}) => {

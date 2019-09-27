@@ -36,8 +36,8 @@ const uploader = multer({
 
 const router = express.Router();
 
-// router.get('/welcome', (req, res) => {
-//     res.redirect('/welcome#/best') ;
+// router.get('/', (req, res) => {
+//     res.redirect('/welcome') ;
 // });
 
 
@@ -130,38 +130,38 @@ router.get('/getuser', (req, res) => {
         .catch(err => console.log('/getuser, router side error: ', err));
 });
 
-// // app.post('/upload', uploader.single('file'), (req, res) => {
-// router.post('/upload-profile-img', uploader.single('file'), s3.upload, (req, res) => {
-//     //req.file - the file that was just uploaded
-//     //req.body - refers to the values we type in the input fileds
-//     console.log("/upload-profile-img, req.body:", req.body);
-//     let userId = req.session.userId;
-//     console.log("/upload-profile-img, userId:", userId);
-//     let img_url = `${config.s3Url}${req.file.filename}`;
-//     console.log('/upload-profile-img, img_url: ', img_url);
-//     // let url ='/uploads' + filename;
-//     db.updateUserImage(userId, img_url)
-//         .then((data) => {
-//             console.log('/upload-profile-img, router side, rows.img_url: ', data.rows);
-//             res.json(data.rows[0]);
-//         })
-//         .catch(err => {
-//             console.log('/upload-profile-img, upload Image Error: ', err);
-//         });
-// });
-//
-// router.post('/update/bio', (req, res) => {
-//     console.log('/update/bio, userId: ', req.session.userId);
-//     console.log('/update/bio, req.body.bio: ', req.body.bio);
-//     let userId = req.session.userId;
-//     let { bio } = req.body;
-//     db.updateBio(userId, bio)
-//         .then((result) => {
-//             console.log('/update/bio, result.rows: ', result.rows);
-//             res.json(result.rows[0]);
-//         })
-//         .catch(err => console.log('/update/bio, router side Error: ', err));
-// });
+// app.post('/upload', uploader.single('file'), (req, res) => {
+router.post('/upload-profile-img', uploader.single('file'), s3.upload, (req, res) => {
+    //req.file - the file that was just uploaded
+    //req.body - refers to the values we type in the input fileds
+    console.log("/upload-profile-img, req.body:", req.body);
+    let userId = req.session.userId;
+    console.log("/upload-profile-img, userId:", userId);
+    let img_url = `${config.s3Url}${req.file.filename}`;
+    console.log('/upload-profile-img, img_url: ', img_url);
+    // let url ='/uploads' + filename;
+    db.updateUserImage(userId, img_url)
+        .then((data) => {
+            console.log('/upload-profile-img, router side, rows.img_url: ', data.rows);
+            res.json(data.rows[0]);
+        })
+        .catch(err => {
+            console.log('/upload-profile-img, upload Image Error: ', err);
+        });
+});
+
+router.post('/update/bio', (req, res) => {
+    console.log('/update/bio, userId: ', req.session.userId);
+    console.log('/update/bio, req.body.bio: ', req.body.bio);
+    let userId = req.session.userId;
+    let { bio } = req.body;
+    db.updateBio(userId, bio)
+        .then((result) => {
+            console.log('/update/bio, result.rows: ', result.rows);
+            res.json(result.rows[0]);
+        })
+        .catch(err => console.log('/update/bio, router side Error: ', err));
+});
 //
 // router.post('/usersearch', (req, res) => {
 //     console.log('req.body.searchterm: ', req.body.searchterm);

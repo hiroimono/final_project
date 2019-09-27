@@ -47,9 +47,7 @@ function Navbar () {
                             <li className="nav-item">
                                 <Link to="/best" className="nav-link" data-no="2"> Best Episodes </Link>
                             </li>
-                            <li className="nav-item">
-                                <Link to="/favorites" className="nav-link" data-no="3"> My Favorites </Link>
-                            </li>
+
                             <li className="nav-item">
                                 <Link to="/login" className="nav-link" data-no="4"> Log in </Link>
                             </li>
@@ -67,3 +65,7 @@ function Navbar () {
 }
 
 export default Navbar;
+
+// <li className="nav-item">
+//     <Link to="/favorites" className="nav-link" data-no="3"> My Favorites </Link>
+// </li>

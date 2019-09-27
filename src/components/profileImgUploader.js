@@ -32,14 +32,44 @@ export class ProfileImgUploader extends React.Component{
         const defaultImg = 'https://www.w3schools.com/howto/img_avatar.png';
         const image = this.props.image || defaultImg;
         return(
-            <div>
-                <p style={{textAlign:'center'}}> THIS IS PROFILE IMAGE UPLOADER PAGE</p>
+            <div className="modal fade" id="modalPush" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div className="modal-dialog modal-notify modal-info" role="document">
+                    <div className="modal-content text-center">
+                        <div className="modal-header d-flex justify-content-center">
+                            <p className="heading">Be always up to date</p>
+                        </div>
+                        <div className="modal-body">
+                            <img className="fas fa-bell fa-4x animated rotateIn mb-4" style = {{objectFit: 'cover'}} src={ image } />
+                            <input onChange={this.handleFileChange} className="btn btn-info" type="file" name="file" accept="image/*" />
+                            <label>Choose a picture</label>
+                        </div>
+                        <div className="modal-footer flex-center">
+                            <button type="submit" className="pull-xs-right tm-submit-btn"
+                                onClick={this.uploadImg}
+                            >
+                                Save
+                            </button>
+
+                            <button type="submit" className="pull-xs-right tm-submit-btn"
+                                onClick={ this.props.clickHandler }
+                            >
+                                Cancel
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
 }
 
+// <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalPush">Launch modal</button>
+//
 // <div className="modal is-active">
+//
+//
 //     <div className="modal-background"></div>
 //     <div className="modal-content">
 //         <p className="image is-4by3">

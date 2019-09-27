@@ -5,7 +5,7 @@ import Login from './login';
 import Navbar from './navbar';
 import Footer from './footer';
 import BestEpisodes from './bestEpisodes';
-import Favorites from './favorites';
+// import Favorites from './favorites';
 import {Player} from './audioPlayer';
 import { HashRouter, Route } from 'react-router-dom';
 
@@ -18,7 +18,6 @@ function Welcome() {
             <Route exact path="/register" component={Registration}/>
             <Route exact path="/login" component={Login}/>
             <Route exact path="/search" component={Search}/>
-            <Route exact path="/favorites" component={Favorites}/>
             { isVisible ? <Player /> : null }
             <Footer />
         </HashRouter>

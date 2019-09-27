@@ -51,11 +51,15 @@ export function NavbarAfterLogin (props) {
                                 <Link to="/apifavorites" className="nav-link" data-no="3"> My Favorites </Link>
                             </li>
                             <li className="nav-item" style={{ alignSelf: 'center', color: 'white'}}>
-                                <Link to='/profile' className="nav-link" data-no="4"> { ( props.name && props.surname ) && <p> Welcome { props.name } { props.surname } </p> } </Link>
+                                <Link to='/profile' className="nav-link" data-no="4" > { ( props.name && props.surname ) && <p> Welcome <span style={{color:'#1fabfa', fontWeight:'bold'}}>{ props.name } { props.surname }</span> </p> } </Link>
                             </li>
 
-                            <li className="nav-item" style={{ alignSelf: 'center', height:'50px', width: '80px'}}>
-                                <ProfilePic className="nav-link" data-no="5" style={{height:'100%', width: '100%'}}
+                            <li className="nav-item" style={{ alignSelf: 'center'}}>
+                                <a href="/logout" className="nav-link" data-no="6"> Log out </a>
+                            </li>
+
+                            <li className="nav-item" style={{ alignSelf: 'center', height:'50px', width: '80px', marginRight:'10px'}}>
+                                <ProfilePic className="nav-link" data-no="5" style={{height:'100%', width: '100%'}} data-toggle="modal" data-target="#modalPush"
                                     image={props.image}
                                     name={props.name}
                                     surname={props.surname}
@@ -63,9 +67,7 @@ export function NavbarAfterLogin (props) {
                                     clickHandler={props.showImgUploder}
                                 />
                             </li>
-                            <li className="nav-item" style={{ alignSelf: 'center'}}>
-                                <a href="/logout" className="nav-link" data-no="6"> Log out </a>
-                            </li>
+
                         </ul>
                     </div>
 

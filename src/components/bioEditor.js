@@ -48,13 +48,60 @@ export default class BioEditor extends React.Component {
         if (this.state.isEditMode){
             return (
                 <div>
-                    <p style={{textAlign:'center'}}>THIS IS BIO EDITOR</p>
+                    <h2 className="tm-contact-info">Say hello to us!</h2>
+
+                    <div className="tm-contact-form">
+
+                        <div className="form-group">
+                            <h1 style={{textAlign:'center'}}>{ this.props.name } { this.props.surname }</h1>
+                        </div>
+
+                        <div className="form-group">
+                            <textarea type='text' id="contact_message" name='bio' className="form-control" rows="5" placeholder="About you..." required
+                                defaultValue={this.props.bio}
+                                onChange={this.handleChange}>
+                            </textarea>
+                        </div>
+
+                        <button type="submit" className="pull-xs-right tm-submit-btn"
+                            onClick={this.updateBio}
+                        >
+                            Save
+                        </button>
+
+                        <button type="submit" className="pull-xs-right tm-submit-btn"
+                            onClick={this.cancelEdit}
+                        >
+                            Cancel
+                        </button>
+
+                    </div>
                 </div>
             );
         } else {
             return (
                 <div>
-                    <p style={{textAlign:'center'}}>THIS IS BIO EDITOR</p>
+                    <h2 className="tm-contact-info">Say hello to us!</h2>
+
+                    <div className="tm-contact-form">
+
+                        <div className="form-group">
+                            <h1 style={{textAlign:'center'}}>{ this.props.name } { this.props.surname }</h1>
+                        </div>
+
+                        <div className="form-group">
+                            <textarea type='text' id="contact_message" name='bio' className="form-control" rows="5" placeholder="About you..." required
+                                value={ this.props.bio }>
+                            </textarea>
+                        </div>
+
+                        <button type="submit" className="pull-xs-right tm-submit-btn"
+                            onClick={this.clickToEdit}
+                        >
+                            Edit
+                        </button>
+
+                    </div>
                 </div>
             );
         }
