@@ -19,7 +19,7 @@
         "@babel/preset-react": "^7.0.0",
         "@testing-library/react": "^8.0.1",
         "aws-sdk": "^2.497.0",
-        "axios": "^0.19.0",
+        "axios": "^0.21.1",
         "babel-core": "^6.26.3",
         "babel-loader": "^8.0.5",
         "babel-plugin-css-in-js": "^1.5.1",
